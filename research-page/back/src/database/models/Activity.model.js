@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   const Activity = sequelize.define('Activity', {
     id: { primaryKey: true, autoIncrement: true, type: DataTypes.INTEGER },
     name: DataTypes.STRING,
-    createAt: {
+    createdAt: {
       type: DataTypes.STRING,
       allowNull: false,
       field: 'created_at',
@@ -14,7 +14,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
   }, {
-    underscored: true,
     tableName: 'activities'
   });
   return Activity;

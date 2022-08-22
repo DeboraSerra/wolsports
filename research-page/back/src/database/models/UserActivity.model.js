@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const UserActivity = sequelize.define('UserActivity', {
-    createAt: {
+    createdAt: {
       type: DataTypes.STRING,
       allowNull: false,
       field: 'created_at',
@@ -11,7 +11,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
   }, {
-    underscored: true,
     tableName: 'users-activities'
   });
   UserActivity.associate = (models) => {

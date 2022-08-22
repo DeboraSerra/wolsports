@@ -1,6 +1,7 @@
 const express = require('express');
 require('express-async-errors');
 require('dotenv/config');
+const cors = require('cors');
 const ErrorMid = require('../middlewares/error.middleware');
 const activity = require('./routes/activity.route');
 const district = require('./routes/district.route');
@@ -12,10 +13,20 @@ const user = require('./routes/user.route');
 
 const PORT = process.env.PORT || 3001;
 
+/* const accessControl = (_req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'https://localhost:3000');
+  res.header('Access-Control-Allow-Methods', 'GET,POST,DELETE,OPTIONS,PUT,PATCH');
+  res.header('Access-Control-Allow-Headers', '*');
+  next();
+}; */
+
 const app = express();
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 app.listen(PORT, () => console.log(PORT));
+
+// app.use(accessControl);
 
 app.use('/activity', activity);
 app.use('/district', district);

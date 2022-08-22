@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const UserPersonality = sequelize.define('UserPersonality', {
-    createAt: {
+    createdAt: {
       type: DataTypes.STRING,
       allowNull: false,
       field: 'created_at',

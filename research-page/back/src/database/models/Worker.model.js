@@ -51,7 +51,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    createAt: {
+    createdAt: {
       type: DataTypes.STRING,
       allowNull: false,
       field: 'created_at',
@@ -62,8 +62,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
   }, {
-    underscored: true,
-    tableName: 'users'
+    tableName: 'workers'
   });
   Worker.associate = (models) => {
     Worker.belongsTo(models.Activity, {

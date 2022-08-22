@@ -1,4 +1,10 @@
 'use strict';
+/**
+ *
+ * @param {import('sequelize').Sequelize} sequelize
+ * @param {import('sequelize').DataTypes} DataTypes
+ * @returns
+ */
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     id: { primaryKey: true, autoIncrement: true, type: DataTypes.INTEGER },
@@ -37,15 +43,17 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
       type: DataTypes.STRING,
     },
-    createAt: {
+    createdAt: {
       type: DataTypes.STRING,
       allowNull: false,
       field: 'created_at',
+      defaultValue: DataTypes.NOW,
     },
     updatedAt: {
       field: 'updated_at',
       type: DataTypes.STRING,
       allowNull: false,
+      defaultValue: DataTypes.NOW,
     },
   }, {
     underscored: true,

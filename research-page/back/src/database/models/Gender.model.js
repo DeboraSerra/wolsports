@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   const Gender = sequelize.define('Gender', {
     id: { primaryKey: true, autoIncrement: true, type: DataTypes.INTEGER },
     name: DataTypes.STRING,
-    createAt: {
+    createdAt: {
       type: DataTypes.STRING,
       allowNull: false,
       field: 'created_at',

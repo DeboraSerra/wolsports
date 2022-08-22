@@ -9,16 +9,13 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.bulkInsert('genders', [
       {
-        name: 'feminino',
+        name: 'Feminino',
       },
       {
-        name: 'masculino'
+        name: 'Masculino'
       },
       {
-        name: 'prefiro não informar'
-      },
-      {
-        name: 'Outro'
+        name: 'Prefiro não informar'
       }
     ])
   },
