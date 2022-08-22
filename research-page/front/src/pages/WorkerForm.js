@@ -19,7 +19,7 @@ const WorkerForm = () => {
   const [valid, setValid] = useState(false);
   const [error, setError] = useState('');
 
-  const { email, name, phone, district, activity, time, needCref, howItWorks, indication } = state;
+  const { email, name, phone, district, activity, time, needCref, address, howItWorks, indication } = state;
   const { districts, activities, times } = useContext(Context);
   const navigate = useNavigate();
 
@@ -39,12 +39,14 @@ const WorkerForm = () => {
     const validName = !!name;
     const validPhone = !!phone;
     const validHow = !!howItWorks;
-    const isValid = validEmail && validName && validPhone && validHow;
+    const validAddres = !!address;
+    const isValid = validEmail && validName && validPhone && validHow && validAddres;
     setValid(isValid);
-  }, [email, name, phone, district, activity, time, needCref, howItWorks, indication]);
+  }, [email, name, phone, district, activity, time, needCref, howItWorks, indication, address]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('')
     const obj = {
       method: 'POST',
       headers: {
@@ -55,7 +57,8 @@ const WorkerForm = () => {
     };
     const data = await fetch(`${url}/worker`, obj);
     const error = await data.json();
-    if (Object.keys(error).length !== 0) {
+    console.log(error);
+    if (error.message) {
       setError(error.message)
       return;
     }
@@ -64,6 +67,7 @@ const WorkerForm = () => {
 
   return (
     <form onSubmit={ handleSubmit }>
+      {error && <p>{error}</p>}
       <input
         type="text"
         name="name"
@@ -100,6 +104,14 @@ const WorkerForm = () => {
           <option value={ id } key={ id }>{ name }</option>
         ))}
       </select>
+      <input
+        type="text"
+        name="address"
+        value={ address }
+        onChange={ handleChange }
+        placeholder="Qual a quadra?"
+        aria-label="Qual a quadra?"
+      />
       <label htmlFor="activity">Que atividade você dá aula?</label>
       <select
         value={ activity }
@@ -158,6 +170,13 @@ const WorkerForm = () => {
           value={ indication }
         />
       </section>
+      <button
+        type="submit"
+        onSubmit={ handleSubmit }
+        disabled={ !valid }
+      >
+        Enviar
+      </button>
     </form>
   )
 }
