@@ -62,15 +62,18 @@ module.exports = {
         onUpdate: 'CASCADE',
       },
       forFun: {
+        field: 'for_fun',
         type: Sequelize.BOOLEAN,
         allowNull: false,
         defaultValue: true,
       },
       isOpen: {
+        field: 'is_open',
         type: Sequelize.STRING,
         allowNull: false
       },
       howItWorks: {
+        field: 'how_it_works',
         type: Sequelize.STRING,
         allowNull: false
       },

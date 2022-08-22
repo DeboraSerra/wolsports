@@ -37,10 +37,12 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: true,
     },
     needCref: {
+      field: 'need_cref',
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
     howItWorks: {
+      field: 'how_it_works',
       type: DataTypes.STRING,
       allowNull: false,
     },

@@ -1,9 +1,9 @@
 const WorkerService = require('../services/worker.service');
 
-const UserController = {
+const WorkerController = {
   getAll: async (req, res) => {
-    const users = await WorkerService.getAll();
-    res.status(200).json({ users });
+    const worker = await WorkerService.getAll();
+    res.status(200).json({ worker });
   },
   create: async (req, res) => {
     const worker = await WorkerService.create(req.body);
@@ -11,4 +11,4 @@ const UserController = {
   }
 }
 
-module.exports = UserController;
+module.exports = WorkerController;

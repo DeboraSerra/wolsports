@@ -62,11 +62,13 @@ module.exports = {
         onUpdate: 'CASCADE',
       },
       needCref: {
+        field: 'need_cref',
         type: Sequelize.BOOLEAN,
         allowNull: false,
         defaultValue: 0,
       },
       howItWorks: {
+        field: 'how_it_works',
         type: Sequelize.STRING,
         allowNull: false,
       },

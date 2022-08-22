@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     district: {
       type: DataTypes.INTEGER,
+      field: 'district_id',
       allowNull: false,
       foreignKey: true,
     },
@@ -36,15 +37,18 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: true,
     },
     forFun: {
+      field: 'for_fun',
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true,
     },
     isOpen: {
+      field: 'is_open',
       type: DataTypes.STRING,
       allowNull: false
     },
     howItWorks: {
+      field: 'how_it_works',
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -65,7 +69,7 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: DataTypes.NOW,
     },
   }, {
-    tableName: 'users'
+    tableName: 'groups'
   });
   Group.associate = (models) => {
     Group.belongsTo(models.Activity, {
