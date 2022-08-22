@@ -1,13 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate, To } from 'react-router-dom';
 import { Context } from '../provider/Provider';
+
+export const url = 'http://localhost:3001';
 
 const UserForm = () => {
   const [state, setState] = useState({
     email: '',
     fullName: '',
     birthday: '',
-    gender: '',
-    district: '',
+    gender: 1,
+    district: 1,
     address: '',
     activity: [],
     practice: false,
@@ -16,33 +19,40 @@ const UserForm = () => {
     personality: [],
     indications: '',
   });
-
   const [valid, setValid] = useState(false);
+  const [error, setError] = useState('');
+
   const { genders, activities, goals, personalities, districts } = useContext(Context);
   const { email, fullName, birthday, gender, district, address, activity, practice,
     which, goal, personality, indications } = state;
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     setState((prevSt) => ({
       ...prevSt,
-      gender: genders[0],
-      district: districts[0],
+      gender: genders[0]?.id,
+      district: districts[0]?.id,
     }))
   }, [])
 
   const handleChange = ({ target }) => {
-    const { name, checked } = target;
-    let { value } = target;
+    const { checked } = target;
+    let { name, value } = target;
     if (name.includes('activity')) {
-      value = checked ? [...activity, value] : activity.filter((a) => a !== value);
+      value = checked ? [...activity, +value] : activity.filter((a) => a !== +value);
+      name = 'activity';
     }
     if (name.includes('personality')) {
-      value = checked ? [...personality, value] : personality.filter((a) => a !== value);
+      value = checked ? [...personality, +value] : personality.filter((a) => a !== +value);
+      name = 'personality';
     }
     if (name.includes('goal')) {
-      value = checked ? [...goal, value] : goal.filter((a) => a !== value);
+      value = checked ? [...goal, +value] : goal.filter((a) => a !== +value);
+      name = 'goal';
     }
-    if (name === practice) value = checked;
+    if (name === 'gender' || name === 'district') value = +value;
+    if (name === 'practice') value = checked;
     setState((prevSt) => ({
       ...prevSt,
       [name]: value,
@@ -50,26 +60,43 @@ const UserForm = () => {
   }
 
   useEffect(() => {
-    const validEmail = !!email && /^[\w+\W+]@[\w+]\.[\w{2,3}]$/.test(email);
+    const validEmail = !!email && /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/g.test(email);
     const validName = !!fullName;
     const validBirthday = !!birthday;
     const validAddress = !!address;
     const validActivity = activity.length > 0;
-    const validWhich = practice && !!which;
+    const validWhich = (practice && !!which) || !practice;
     const validGoal = goal.length > 0;
     const validPersonality = personality.length > 0;
-    setValid(validEmail && validName && validBirthday && validAddress
-      && validActivity && validWhich && validGoal && validPersonality);
-  }, [state])
+    const isValid = validEmail && validName && validBirthday && validAddress
+    && validActivity && validWhich && validGoal && validPersonality
+    setValid(isValid);
+  }, [fullName, email, birthday, address, activity, which, practice, goal, ,personality])
 
-  const handleSubmit = () => {
-    // navigate('/')
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const obj = {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(state),
+    };
+    const data = await fetch(`${url}/user`, obj);
+    const error = await data.json();
+    if (Object.keys(error).length !== 0) {
+      setError(error.message)
+      return;
+    }
+    navigate('/')
   }
   return (
-    <form action="http://localhost:3001/user" method="POST" onSubmit={ handleSubmit }>
+    <form onSubmit={ handleSubmit }>
+      {error && <p>{error}</p>}
       <input
         type="text"
-        name="name"
+        name="fullName"
         value={ fullName }
         onChange={ handleChange }
         placeholder="Nome completo"
@@ -101,7 +128,7 @@ const UserForm = () => {
               id={ name }
               value={ id }
               onChange={ handleChange }
-              checked={ gender === id }
+              selected={ gender === id }
             />
             {name}
           </label>
@@ -109,8 +136,9 @@ const UserForm = () => {
       </section>
       <select
         value={ district }
-        onChange={ handleChange }
+        name="district"
         aria-label="Região administrativa"
+        onChange={ handleChange }
       >
         {districts.map(({ id, name }) => (
           <option value={ id } key={ id }>{ name }</option>
@@ -131,7 +159,7 @@ const UserForm = () => {
           <label htmlFor={ name } key={ id }>
             <input
               type="checkbox"
-              name={ `activity-${name}` }
+              name={ `activity-${id}` }
               id={ name }
               value={ id }
               onChange={ handleChange }
@@ -164,11 +192,27 @@ const UserForm = () => {
           <label htmlFor={ name } key={ id }>
             <input
               type="checkbox"
-              name={ `goal-${name}` }
+              name={ `goal-${id}` }
               id={ name }
               value={ id }
               onChange={ handleChange }
               checked={ goal.includes(id) }
+            />
+            {name}
+          </label>
+        ))}
+      </section>
+      <section>
+        <legend>Quando você vai fazer exercício, você se considera uma pessoa:</legend>
+        {personalities.map(({ id, name }) => (
+          <label htmlFor={name} key={ id }>
+            <input
+              type="checkbox"
+              name={ `personality-${id}` }
+              id={ name }
+              value={ id }
+              onChange={ handleChange }
+              checked={ personality.includes(id) }
             />
             {name}
           </label>

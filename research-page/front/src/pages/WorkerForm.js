@@ -3,9 +3,8 @@ import react, { useEffect, useState } from 'react';
 const WorkerForm = () => {
   const [state, setState] = useState({
     email: '',
-    name: '',
+    fullName: '',
     phone: '',
-    state: '',
     district: '',
     activity: '',
     time: '',
