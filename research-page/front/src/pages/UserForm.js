@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useNavigate, To } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Context } from '../provider/Provider';
 
-export const url = 'http://localhost:3001';
+export const url = process.env.REACT_APP_URL || 'http://localhost:3001';
 
 const UserForm = () => {
   const [state, setState] = useState({
@@ -220,8 +220,7 @@ const UserForm = () => {
       </section>
       <section>
         <legend>Conhece algum grupo para nos indicar?</legend>
-        <input
-          type="text"
+        <textarea
           name="indications"
           onChange={ handleChange }
           value={ indications }

@@ -1,8 +1,8 @@
-import logo from './logo.svg';
 import './App.css';
+import { Routes, Route, Link } from 'react-router-dom';
 import UserForm from './pages/UserForm';
 import WorkerForm from './pages/WorkerForm';
-import { Routes, Route, Link } from 'react-router-dom';
+import GroupForm from './pages/GroupForm';
 
 function App() {
   return (
@@ -13,8 +13,9 @@ function App() {
         <Link to="/group">Grupo</Link>
       </nav>
       <Routes>
-        <Route exact path="/" element={ <WorkerForm /> } />
+        <Route path="/worker" element={ <WorkerForm /> } />
         <Route path="/user" element={ <UserForm /> } />
+        <Route path="/group" element={ <GroupForm /> } />
       </Routes>
     </div>
   );
