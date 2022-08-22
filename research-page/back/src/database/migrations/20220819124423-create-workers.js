@@ -66,10 +66,6 @@ module.exports = {
         allowNull: false,
         defaultValue: 0,
       },
-      cref: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
       howItWorks: {
         type: Sequelize.STRING,
         allowNull: false,

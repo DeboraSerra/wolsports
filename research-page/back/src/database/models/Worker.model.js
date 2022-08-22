@@ -39,10 +39,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    cref: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
     howItWorks: {
       type: DataTypes.STRING,
       allowNull: false,
