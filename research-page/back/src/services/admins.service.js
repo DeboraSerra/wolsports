@@ -10,7 +10,7 @@ const AdminService = {
     if (!email || !pass) {
       throw new CodeError('Email e senha são obrigatórios', 403);
     }
-    const admin = await db.Admin.findOne({ email });
+    const admin = await db.Admin.findOne({ where: { email } });
     const valid = await bcrypt.compare(pass, admin.password);
     if (!admin || !valid) {
       throw new CodeError('Email ou senha incorreta', 403);
