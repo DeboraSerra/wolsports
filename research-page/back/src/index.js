@@ -12,6 +12,8 @@ const time = require('./routes/time.route');
 const user = require('./routes/user.route');
 const worker = require('./routes/worker.route');
 const group = require('./routes/group.route');
+const admin = require('./routes/admin.route');
+const tokenMiddleware = require('./middlewares/token.middleware');
 
 const PORT = process.env.PORT || 3001;
 
@@ -29,5 +31,8 @@ app.use('/time', time);
 app.use('/user', user);
 app.use('/worker', worker);
 app.use('/group', group);
+app.use('/login', admin);
+
+app.use(tokenMiddleware);
 
 app.use(ErrorMid);
