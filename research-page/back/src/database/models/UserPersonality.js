@@ -1,18 +1,8 @@
 module.exports = (sequelize, DataTypes) => {
   const UserPersonality = sequelize.define('UserPersonality', {
-    createdAt: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      field: 'created_at',
-    },
-    updatedAt: {
-      field: 'updated_at',
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
   }, {
-    underscored: true,
-    tableName: 'users-activities'
+    tableName: 'user_personality',
+    timestamps: false,
   });
   UserPersonality.associate = (models) => {
     models.User.belongsToMany(models.Personality, {

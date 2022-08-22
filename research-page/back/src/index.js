@@ -2,7 +2,7 @@ const express = require('express');
 require('express-async-errors');
 require('dotenv/config');
 const cors = require('cors');
-const ErrorMid = require('../middlewares/error.middleware');
+const ErrorMid = require('./middlewares/error.middleware');
 const activity = require('./routes/activity.route');
 const district = require('./routes/district.route');
 const gender = require('./routes/gender.route');

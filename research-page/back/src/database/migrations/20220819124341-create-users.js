@@ -14,6 +14,10 @@ module.exports = {
         autoIncrement: true,
         type: Sequelize.INTEGER,
       },
+      email: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       fullName: {
         type: Sequelize.STRING,
         field: 'full_name',

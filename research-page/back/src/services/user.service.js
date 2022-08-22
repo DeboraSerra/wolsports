@@ -1,5 +1,10 @@
+const Sequelize = require('sequelize');
+require('dotenv/config');
 const db = require('../database/models');
 const CodeError = require('../helpers/CodeError');
+const config = require('../database/config/config');
+const env = process.env.NODE_ENV || 'development';
+const seq = new Sequelize(config[env]);
 
 const UserService = {
   getAll: async () => {
@@ -13,20 +18,19 @@ const UserService = {
       || activity.length === 0 || goal.length === 0 || personality.length === 0) {
       throw new CodeError('Informações faltando', 401);
     }
-    const user = await db.User.create({ email, fullName, birthday, gender, district, address, practice, which, indications });
-    const activities = await Promise.all(activity.map((id) => {
-      db.UserActivity.create({ activityId: id, userId: user.id })
-      return id;
-    }))
-    const goals = await Promise.all(goal.map((id) => {
-      db.UserGoals.create({ goalId: id, userId: user.id })
-      return id;
-    }))
-    const personalities = await Promise.all(personality.map((id) => {
-      db.UserPersonality.create({ personalityId: id, userId: user.id })
-      return id;
-    }))
-    return { ...user, activities, goals, personalities };
+    const result = await seq.transaction(async (t) => {
+      const { dataValues: user} = await db.User.create({ email, fullName, birthday, gender, district, address, practice, which, indications }, { transaction: t, raw: true });
+      const acts = activity.map((id) => ({ activity_id: id,
+        user_id: user.id }));
+      const activities = await db.UserActivity.bulkCreate(acts, { transaction: t });
+      const go = goal.map((id) => ({ goal_id: id,
+        user_id: user.id }));
+      const goals = await db.UserGoal.bulkCreate(go, { transaction: t });
+      const pers = personality.map((id) => ({ personality_id: id,
+        user_id: user.id }));
+      const personalities = await db.UserPersonality.bulkCreate(pers, { transaction: t });
+      return { ...user, activities, goals, personalities };
+    })
   }
 }
 

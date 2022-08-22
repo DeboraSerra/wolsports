@@ -1,17 +1,8 @@
 module.exports = (sequelize, DataTypes) => {
   const UserActivity = sequelize.define('UserActivity', {
-    createdAt: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      field: 'created_at',
-    },
-    updatedAt: {
-      field: 'updated_at',
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
   }, {
-    tableName: 'users-activities'
+    tableName: 'user_activity',
+    timestamps: false,
   });
   UserActivity.associate = (models) => {
     models.User.belongsToMany(models.Activity, {

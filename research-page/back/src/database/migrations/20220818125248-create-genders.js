@@ -1,5 +1,4 @@
 'use strict';
-
 module.exports = {
   /**
    *
@@ -16,18 +15,6 @@ module.exports = {
       name: {
         type: Sequelize.STRING,
         allowNull: false,
-      },
-      createdAt: {
-        field: 'created_at',
-        type: Sequelize.DATE,
-        allowNull: false,
-        defaultValue: Sequelize.NOW,
-      },
-      updatedAt: {
-        field: 'updated_at',
-        type: Sequelize.DATE,
-        allowNull: false,
-        defaultValue: Sequelize.NOW,
       },
     })
   },

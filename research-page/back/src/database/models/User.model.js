@@ -8,6 +8,10 @@
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     id: { primaryKey: true, autoIncrement: true, type: DataTypes.INTEGER },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     fullName: {
       type: DataTypes.STRING,
       field: 'full_name',
@@ -21,9 +25,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       foreignKey: true,
+      field: 'gender_id'
     },
     district: {
       type: DataTypes.INTEGER,
+      field: 'district_id',
       allowNull: false,
       foreignKey: true,
     },
@@ -44,19 +50,18 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
     createdAt: {
-      type: DataTypes.STRING,
+      type: DataTypes.DATE,
       allowNull: false,
       field: 'created_at',
       defaultValue: DataTypes.NOW,
     },
     updatedAt: {
       field: 'updated_at',
-      type: DataTypes.STRING,
+      type: DataTypes.DATE,
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
   }, {
-    underscored: true,
     tableName: 'users'
   });
   User.associate = (models) => {

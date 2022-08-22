@@ -7,7 +7,7 @@ module.exports = {
    */
   async up (queryInterface, Sequelize) {
     await queryInterface.createTable('user_goal', {
-      goal: {
+      goalId: {
         field: 'goal_id',
         primaryKey: true,
         type: Sequelize.INTEGER,
@@ -17,7 +17,7 @@ module.exports = {
         },
         allowNull: false,
       },
-      user: {
+      userId: {
         field: 'user_id',
         allowNull: false,
         type: Sequelize.INTEGER,
@@ -26,18 +26,6 @@ module.exports = {
           model: 'users',
           key: 'id',
         },
-      },
-      createdAt: {
-        field: 'created_at',
-        type: Sequelize.DATE,
-        allowNull: false,
-        defaultValue: Sequelize.NOW,
-      },
-      updatedAt: {
-        field: 'updated_at',
-        type: Sequelize.DATE,
-        allowNull: false,
-        defaultValue: Sequelize.NOW,
       },
     })
   },
