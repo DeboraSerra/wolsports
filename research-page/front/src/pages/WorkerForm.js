@@ -39,8 +39,8 @@ const WorkerForm = () => {
     const validName = !!name;
     const validPhone = !!phone;
     const validHow = !!howItWorks;
-    const validAddres = !!address;
-    const isValid = validEmail && validName && validPhone && validHow && validAddres;
+    const validAddress = !!address;
+    const isValid = validEmail && validName && validPhone && validHow && validAddress;
     setValid(isValid);
   }, [email, name, phone, district, activity, time, needCref, howItWorks, indication, address]);
 
@@ -92,18 +92,20 @@ const WorkerForm = () => {
         placeholder="(**) *****-****"
         aria-label="Telefone com DDD"
       />
-      <label htmlFor="district">Onde acontece sua atividade?</label>
-      <select
-        value={ district }
-        name="district"
-        id="district"
-        aria-label="Região administrativa"
-        onChange={ handleChange }
-      >
-        {districts.map(({ id, name }) => (
-          <option value={ id } key={ id }>{ name }</option>
-        ))}
-      </select>
+      <label htmlFor="district">
+        Onde acontece sua atividade?
+        <select
+          value={ district }
+          name="district"
+          id="district"
+          aria-label="Região administrativa"
+          onChange={ handleChange }
+        >
+          {districts.map(({ id, name }) => (
+            <option value={ id } key={ id }>{ name }</option>
+          ))}
+        </select>
+      </label>
       <input
         type="text"
         name="address"
@@ -112,18 +114,20 @@ const WorkerForm = () => {
         placeholder="Qual a quadra?"
         aria-label="Qual a quadra?"
       />
-      <label htmlFor="activity">Que atividade você dá aula?</label>
-      <select
-        value={ activity }
-        name="activity"
-        id="activity"
-        aria-label="Atividade"
-        onChange={ handleChange }
-      >
-        {activities.map(({ id, name }) => (
-          <option value={ id } key={ id }>{ name }</option>
-        ))}
-      </select>
+      <label htmlFor="activity">
+        Que atividade você dá aula?
+        <select
+          value={ activity }
+          name="activity"
+          id="activity"
+          aria-label="Atividade"
+          onChange={ handleChange }
+        >
+          {activities.map(({ id, name }) => (
+            <option value={ id } key={ id }>{ name }</option>
+          ))}
+        </select>
+      </label>
       <section>
         <legend>Em qual horário você costuma dar a sua atividade?</legend>
         {times.map(({ id, name }) => (
