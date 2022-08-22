@@ -10,6 +10,7 @@ const goal = require('./routes/goal.route');
 const personality = require('./routes/personality.route');
 const time = require('./routes/time.route');
 const user = require('./routes/user.route');
+const worker = require('./routes/worker.route');
 
 const PORT = process.env.PORT || 3001;
 
@@ -35,5 +36,6 @@ app.use('/goal', goal);
 app.use('/personality', personality);
 app.use('/time', time);
 app.use('/user', user);
+app.use('/worker', worker);
 
 app.use(ErrorMid);
