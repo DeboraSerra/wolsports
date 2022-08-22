@@ -8,12 +8,12 @@ const WorkerService = {
   },
   create: async (info) => {
     const { email, name, phone, district, activity, time, needCref,
-      howItWorks, indication } = info;
+      howItWorks, indication, address } = info;
     if (!info || !email || !name || !phone || !time || !district || needCref === undefined
-      || !activity || !howItWorks) {
+      || !activity || !howItWorks || !address) {
       throw new CodeError('Informações faltando', 401);
     }
-    const { dataValues: worker} = await db.Worker.create({ email, name, phone, district, activity, time, needCref, howItWorks, indication });
+    const { dataValues: worker} = await db.Worker.create({ email, name, phone, address, district, activity, time, needCref, howItWorks, indication });
     return { ...worker };
   }
 }

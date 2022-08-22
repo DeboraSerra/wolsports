@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     district: {
       type: DataTypes.INTEGER,
+      field: 'district_id',
       allowNull: false,
       foreignKey: true,
     },
