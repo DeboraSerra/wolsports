@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export const url = process.env.REACT_APP_URL || 'http://localhost:3001';
+export const url = 'http://localhost:3001';
 
 const Login = () => {
   const [state, setState] = useState({
@@ -12,6 +12,28 @@ const Login = () => {
   const navigate = useNavigate();
 
   const { email, password } = state;
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      verify(token);
+    }
+  }, [])
+
+  const verify = async (token) => {
+    const obj = {
+      method: 'GET',
+      headers: {
+        authorization: token,
+      },
+    }
+    const response = await fetch(`${url}/login/verification`, obj);
+    const { admin } = await response.json();
+    if (admin) {
+      localStorage.setItem('admin', admin);
+      navigate('/metrics');
+    }
+  }
 
   const handleChange = ({ target: { name, value } }) => {
     setState((prevSt) => ({
@@ -34,6 +56,9 @@ const Login = () => {
     const info = await data.json();
     if (info.token) {
       localStorage.setItem('token', info.token);
+      const res = await fetch(`${url}/login/verification`, { method: 'GET', headers: { authorization: info.token } });
+      const { admin } = await res.json();
+      localStorage.setItem('admin', admin);
       navigate('/metrics');
       return;
     }

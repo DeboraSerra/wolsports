@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Chart, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
+import { BiExit } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
 import FilterButtons from '../components/FilterButtons';
 
@@ -13,12 +14,16 @@ const Metrics = () => {
     arr: [],
     title: '',
     loading: true,
-    type: '',
+    admin: '',
   })
-  const { arr, title, loading, type } = state;
+  const navigate = useNavigate();
+
+  const { arr, title, loading, admin } = state;
 
   useEffect(() => {
     getInfo('activity');
+    const admin = localStorage.getItem('admin');
+    setState((prevSt) => ({ admin }));
   }, [])
 
   const getInfo = async (cat, text) => {
@@ -42,6 +47,12 @@ const Metrics = () => {
 
   return (
     <section style={{ width: '80%', margin: 'auto' }}>
+      <h1>Olá, {admin}</h1>
+      <BiExit onClick={ () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('admin');
+        navigate('/login');
+      }} />
       <FilterButtons handleClick={ getInfo } />
       {!loading && <Bar options={ {
           responsive: true,

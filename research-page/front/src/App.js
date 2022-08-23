@@ -1,5 +1,6 @@
 import './App.css';
 import { Routes, Route, Link } from 'react-router-dom';
+import Header from './components/Header';
 import UserForm from './pages/UserForm';
 import WorkerForm from './pages/WorkerForm';
 import GroupForm from './pages/GroupForm';
@@ -9,12 +10,7 @@ import Metrics from './pages/Metrics';
 function App() {
   return (
     <div className="App">
-      <nav>
-        <Link to="/user">Usuário</Link>
-        <Link to="/worker">Profissional</Link>
-        <Link to="/group">Grupo</Link>
-        <Link to="/login">Métricas</Link>
-      </nav>
+      <Header />
       <Routes>
         <Route path="/worker" element={ <WorkerForm /> } />
         <Route path="/user" element={ <UserForm /> } />
