@@ -12,7 +12,8 @@ module.exports = async (req, res, next) => {
   }
   const token = auth.includes('Bearer') ? auth.split(' ')[1] : auth;
   console.log(token);
-  const { payload } = jwt.verify(token, jwtSecret);
-  req.admin = payload;
+  const { payload: { data: { dataValues } } } = jwt.verify(token, jwtSecret, { complete: true });
+  console.log({ middleware: dataValues})
+  req.admin = dataValues;
   next();
 }
