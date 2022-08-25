@@ -1,0 +1,109 @@
+.main {
+  min-width: 99vw;
+  margin: auto;
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  border-bottom: 1px solid #443069;
+  margin-bottom: 12px;
+}
+
+.graph_sect {
+  width: 80%;
+  margin: auto;
+}
+
+.graph_sect h1 {
+  color: #443069;
+  font-size: 1.4rem;
+}
+
+.log_out {
+  color: #443069;
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+}
+
+.graph_sect button {
+  padding: 8px 12px;
+  margin: 12px;
+  font-size: 1.1rem;
+  border: none;
+  box-shadow: 4px 4px 15px #443069;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.graph_sect button:hover {
+  opacity: 0.8;
+}
+
+.graph_sect button:active {
+  box-shadow: 2px 2px 5px #443069;
+}
+
+.main p {
+  height: 80px;
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+  opacity: 0.3;
+}
+
+.main p:last-of-type {
+  background-color: #7251ae;
+  bottom: 0;
+}
+
+.main p:nth-last-of-type(2) {
+  bottom: calc(80px * 1);
+  background-color: #885fc9;
+}
+
+.main p:nth-last-of-type(3) {
+  bottom: calc(80px * 2);
+  background-color: #9263cb;
+}
+
+.main p:nth-last-of-type(4) {
+  bottom: calc(80px * 3);
+  background-color: #a178d6;
+}
+
+.main p:nth-last-of-type(5) {
+  bottom: calc(80px * 4);
+  background-color: #b489e0;
+}
+
+.main p:nth-last-of-type(6) {
+  bottom: calc(80px * 5);
+  background-color: #c0a0e9;
+}
+
+.main p:nth-last-of-type(7) {
+  bottom: calc(80px * 6);
+  background-color: #d3b5f3;
+}
+
+.main p:nth-last-of-type(8) {
+  bottom: calc(80px * 7);
+  background-color: #e3cdff;
+}
+
+.main p:nth-last-of-type(9) {
+  bottom: calc(80px * 8);
+  background-color: #f1e1fe;
+}
+
+.main p:nth-last-of-type(10) {
+  bottom: calc(80px * 9);
+  background-image: linear-gradient(#e2dfe1, #fbf3fd);
+}

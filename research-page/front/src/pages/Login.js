@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Background from '../components/Background';
+import style from '../styles/Login.module.css';
 
 export const url = 'http://localhost:3001';
 
@@ -66,7 +68,7 @@ const Login = () => {
   }
 
   return (
-    <form onSubmit={ handleSubmit }>
+    <form onSubmit={ handleSubmit } className={ style.form }>
       {error && <p>{ error }</p>}
       <input
         type="email"
@@ -87,6 +89,7 @@ const Login = () => {
       <button onSubmit={ handleSubmit } type="submit">
         Entrar
       </button>
+      <Background />
     </form>
   )
 }

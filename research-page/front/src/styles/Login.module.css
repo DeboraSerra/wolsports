@@ -1,0 +1,86 @@
+.form {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.form input {
+  width: 80%;
+  height: 10%;
+  margin: 16px 0;
+  text-align: center;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 8px;
+  padding: 16px 8px;
+}
+
+.form button {
+  padding: 8px 12px;
+  margin: 12px;
+  font-size: 1.1rem;
+  border: none;
+  box-shadow: 4px 4px 15px #443069;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.form p {
+  height: 10%;
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+}
+
+.form p:last-of-type {
+  background-color: #7251ae;
+  bottom: 0;
+}
+
+.form p:nth-last-of-type(2) {
+  bottom: calc(10% * 1);
+  background-color: #885fc9;
+}
+
+.form p:nth-last-of-type(3) {
+  bottom: calc(10% * 2);
+  background-color: #9263cb;
+}
+
+.form p:nth-last-of-type(4) {
+  bottom: calc(10% * 3);
+  background-color: #a178d6;
+}
+
+.form p:nth-last-of-type(5) {
+  bottom: calc(10% * 4);
+  background-color: #b489e0;
+}
+
+.form p:nth-last-of-type(6) {
+  bottom: calc(10% * 5);
+  background-color: #c0a0e9;
+}
+
+.form p:nth-last-of-type(7) {
+  bottom: calc(10% * 6);
+  background-color: #d3b5f3;
+}
+
+.form p:nth-last-of-type(8) {
+  bottom: calc(10% * 7);
+  background-color: #e3cdff;
+}
+
+.form p:nth-last-of-type(9) {
+  bottom: calc(10% * 8);
+  background-color: #f1e1fe;
+}
+
+.form p:nth-last-of-type(10) {
+  bottom: calc(10% * 9);
+  background-image: linear-gradient(#e2dfe1, #fbf3fd);
+}

@@ -1,0 +1,70 @@
+.main {
+  min-width: 99vw;
+  margin: auto;
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.modal {
+  width: 500px;
+  height: 500px;
+  margin: auto;
+}
+
+.main p {
+  height: 100px;
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+}
+
+.main p:last-of-type {
+  background-color: #7251ae;
+  bottom: 0;
+}
+
+.main p:nth-last-of-type(2) {
+  bottom: calc(100px * 1);
+  background-color: #885fc9;
+}
+
+.main p:nth-last-of-type(3) {
+  bottom: calc(100px * 2);
+  background-color: #9263cb;
+}
+
+.main p:nth-last-of-type(4) {
+  bottom: calc(100px * 3);
+  background-color: #a178d6;
+}
+
+.main p:nth-last-of-type(5) {
+  bottom: calc(100px * 4);
+  background-color: #b489e0;
+}
+
+.main p:nth-last-of-type(6) {
+  bottom: calc(100px * 5);
+  background-color: #c0a0e9;
+}
+
+.main p:nth-last-of-type(7) {
+  bottom: calc(100px * 6);
+  background-color: #d3b5f3;
+}
+
+.main p:nth-last-of-type(8) {
+  bottom: calc(100px * 7);
+  background-color: #e3cdff;
+}
+
+.main p:nth-last-of-type(9) {
+  bottom: calc(100px * 8);
+  background-color: #f1e1fe;
+}
+
+.main p:nth-last-of-type(10) {
+  bottom: calc(100px * 9);
+  background-color: #fbf3fd;
+}

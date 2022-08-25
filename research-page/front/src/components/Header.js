@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Header = () => {
+const Header = ({ openModal }) => {
   return (
     <header>
       <img src="" alt="" />
@@ -9,7 +9,7 @@ const Header = () => {
         <Link to="/user">Usuário</Link>
         <Link to="/worker">Profissional</Link>
         <Link to="/group">Grupo</Link>
-        <Link to="/login">Métricas</Link>
+        <button type="button" onClick={ openModal }>Métricas</button>
       </nav>
     </header>
   )
