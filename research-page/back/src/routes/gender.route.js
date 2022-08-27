@@ -4,10 +4,6 @@ const GenderController = require('../controllers/gender.controller');
 const router = Router();
 
 router.route('/')
-  .get(GenderController.getAll)
-  .post(GenderController.create);
-
-router.route('/:id')
-  .get(GenderController.getOne);
+  .get(GenderController.getAll);
 
 module.exports = router;

@@ -4,10 +4,6 @@ const GoalController = require('../controllers/goal.controller');
 const router = Router();
 
 router.route('/')
-  .get(GoalController.getAll)
-  .post(GoalController.create);
-
-router.route('/:id')
-  .get(GoalController.getOne);
+  .get(GoalController.getAll);
 
 module.exports = router;

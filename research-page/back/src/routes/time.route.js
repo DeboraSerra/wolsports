@@ -6,7 +6,4 @@ const router = Router();
 router.route('/')
   .get(TimeController.getAll);
 
-router.route('/:id')
-  .get(TimeController.getOne);
-
 module.exports = router;
