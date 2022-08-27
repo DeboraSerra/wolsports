@@ -65,7 +65,7 @@ module.exports = {
         field: 'need_cref',
         type: Sequelize.BOOLEAN,
         allowNull: false,
-        defaultValue: false,
+        defaultValue: 0,
       },
       howItWorks: {
         field: 'how_it_works',

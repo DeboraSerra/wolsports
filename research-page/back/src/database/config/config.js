@@ -8,23 +8,20 @@ module.exports = {
     "password": PASS,
     "database": DATABASE,
     "host": HOST,
-    "port": DB_PORT,
-    "dialect": "postgres",
+    "dialect": "mysql"
   },
   "test": {
     "username": DB_USERNAME,
     "password": PASS,
     "database": DATABASE,
     "host": HOST,
-    "port": DB_PORT,
-    "dialect": "postgres"
+    "dialect": "mysql"
   },
   "production": {
     "username": DB_USERNAME,
     "password": PASS,
     "database": DATABASE,
     "host": HOST,
-    "port": DB_PORT,
-    "dialect": "postgres"
+    "dialect": "mysql"
   },
 }
