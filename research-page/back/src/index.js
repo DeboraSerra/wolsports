@@ -3,10 +3,10 @@ require('express-async-errors');
 require('dotenv/config');
 const cors = require('cors');
 const ErrorMid = require('./middlewares/error.middleware');
-const user = require('./routes/user.route');
-const worker = require('./routes/worker.route');
-const group = require('./routes/group.route');
 const admin = require('./routes/admin.route');
+const UserController = require('./controllers/user.controller');
+const WorkerController = require('./controllers/worker.controller');
+const GroupController = require('./controllers/group.controller');
 
 const PORT = process.env.PORT || 3001;
 
@@ -15,11 +15,9 @@ app.use(express.json());
 app.use(cors());
 app.listen(PORT, () => console.log(PORT));
 
-app.get('/', (req, res) => res.send('OK'));
-
-app.use('/user', user);
-app.use('/worker', worker);
-app.use('/group', group);
+app.post('/user', UserController.create);
+app.post('/worker', WorkerController.create);
+app.post('/group', GroupController.create);
 app.use('/login', admin);
 
 app.use(ErrorMid);
