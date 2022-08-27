@@ -39,3 +39,5 @@ app.use(tokenMiddleware);
 app.use('/metrics', metrics);
 
 app.use(ErrorMid);
+
+module.exports = app;
