@@ -4,8 +4,7 @@ const GoalController = require('../controllers/goal.controller');
 const router = Router();
 
 router.route('/')
-  .get(GoalController.getAll)
-  .post(GoalController.create);
+  .get(GoalController.getAll);
 
 router.route('/:id')
   .get(GoalController.getOne);

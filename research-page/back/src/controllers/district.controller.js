@@ -10,11 +10,6 @@ const DistrictController = {
     const district = await DistrictService.getOne(id);
     res.status(200).json({ district });
   },
-  create: async (req, res) => {
-    const { data } = req.body;
-    const district = await DistrictService.create(data);
-    res.status(203).json({ district });
-  },
 }
 
 module.exports = DistrictController;

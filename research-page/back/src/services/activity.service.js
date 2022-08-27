@@ -11,11 +11,6 @@ const ActivityService = {
     if (!activity) throw new CodeError('Activity not found', 404);
     return activity;
   },
-  create: async (name) => {
-    if (!name) throw new CodeError('O nome da atividade é obrigatório', 401);
-    const activity = await db.Activity.create({ name });
-    return activity;
-  },
 };
 
 module.exports = ActivityService;

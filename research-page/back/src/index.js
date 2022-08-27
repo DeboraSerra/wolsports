@@ -27,18 +27,12 @@ app.get('/', (req, res) => res.send('OK'));
 
 app.use('/activity', activity);
 app.use('/district', district);
-app.use('/gender', gender);
 app.use('/goal', goal);
 app.use('/personality', personality);
-app.use('/time', time);
 app.use('/user', user);
 app.use('/worker', worker);
 app.use('/group', group);
 app.use('/login', admin);
-
-app.use(tokenMiddleware);
-
-app.use('/metrics', metrics);
 
 app.use(ErrorMid);
 

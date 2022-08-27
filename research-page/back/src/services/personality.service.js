@@ -11,11 +11,6 @@ const PersonalityService = {
     if (!personality) throw new CodeError('Personality not found', 404);
     return personality;
   },
-  create: async (name) => {
-    if (!name) throw new CodeError('O nome da personalidade é obrigatório', 401);
-    const personality = await db.Personality.create({ name });
-    return personality;
-  },
 };
 
 module.exports = PersonalityService;
