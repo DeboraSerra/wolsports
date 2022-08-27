@@ -23,6 +23,8 @@ app.use(express.json());
 app.use(cors());
 app.listen(PORT, () => console.log(PORT));
 
+app.get('/', (req, res) => res.send('OK'));
+
 app.use('/activity', activity);
 app.use('/district', district);
 app.use('/gender', gender);
