@@ -8,7 +8,7 @@
   ],
   "routes": [
     {
-      "source": "./src/(.*)",
+      "src": "./src/(.*)",
       "destination": "./src/index.js"
     }
   ],
