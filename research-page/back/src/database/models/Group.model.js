@@ -80,10 +80,6 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'district_id',
       as: 'districtId',
     })
-    Group.belongsTo(models.Time, {
-      foreignKey: 'time_id',
-      as: 'timeId',
-    })
   }
   return Group;
 };

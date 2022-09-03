@@ -65,10 +65,6 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'users'
   });
   User.associate = (models) => {
-    User.belongsTo(models.Gender, {
-      foreignKey: 'gender_id',
-      as: 'genderId',
-    })
     User.belongsTo(models.District, {
       foreignKey: 'district_id',
       as: 'districtId',

@@ -1,24 +1,31 @@
 'use strict';
+/**
+ *
+ * @param {import('sequelize').Sequelize} sequelize
+ * @param {import('sequelize').DataTypes} DataTypes
+ * @returns
+ */
 module.exports = (sequelize, DataTypes) => {
-  const Worker = sequelize.define('Worker', {
+  const User = sequelize.define('User', {
     id: { primaryKey: true, autoIncrement: true, type: DataTypes.INTEGER },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    name: {
+    fullName: {
       type: DataTypes.STRING,
+      field: 'full_name',
       allowNull: false,
     },
-    phone: {
-      type: DataTypes.STRING,
+    birthday: {
+      type: DataTypes.DATE,
       allowNull: false,
     },
-    activity: {
-      field: 'activity_id',
+    gender: {
       type: DataTypes.INTEGER,
       allowNull: false,
       foreignKey: true,
+      field: 'gender_id'
     },
     district: {
       type: DataTypes.INTEGER,
@@ -30,25 +37,17 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    time: {
-      field: 'time_id',
-      type: DataTypes.INTEGER,
+    practice: {
       allowNull: false,
-      foreignKey: true,
-    },
-    needCref: {
-      field: 'need_cref',
       type: DataTypes.BOOLEAN,
-      allowNull: false,
     },
-    howItWorks: {
-      field: 'how_it_works',
+    which: {
+      allowNull: true,
       type: DataTypes.STRING,
-      allowNull: false,
     },
-    indication: {
+    indications: {
+      allowNull: true,
       type: DataTypes.STRING,
-      allowNull: false,
     },
     createdAt: {
       type: DataTypes.DATE,
@@ -63,17 +62,16 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: DataTypes.NOW,
     },
   }, {
-    tableName: 'workers'
+    tableName: 'users'
   });
-  Worker.associate = (models) => {
-    Worker.belongsTo(models.Activity, {
-      foreignKey: 'activity_id',
-      as: 'activityId',
-    })
-    Worker.belongsTo(models.District, {
+  User.associate = (models) => {
+    User.belongsTo(models.District, {
       foreignKey: 'district_id',
       as: 'districtId',
+    });
+    User.belongsTo(models.Gender, {
+      foreignKey: 'gender',
     })
   }
-  return Worker;
+  return User;
 };
