@@ -1,0 +1,134 @@
+.banner_mobile {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: 50vh;
+  margin-bottom: 20px;
+}
+
+.main h1 {
+  width: fit-content;
+  font-size: 2.4rem;
+  margin: 8px auto;
+  background: -webkit-linear-gradient(45deg, var(--yellow), var(--pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.banner_mobile p {
+  width: 80%;
+  margin: 32px auto;
+}
+
+.banner_mobile select {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid white;
+  width: 130px;
+  font-family: 'Montserrat Alternates', monospace, sans-serif;
+  text-align: center;
+  margin: 4px 8px;
+  font-size: 1.1rem;
+}
+
+.banner_mobile img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100vw;
+  height: 50vh;
+  object-fit: cover;
+}
+
+.banner_mobile ~ p {
+  font-size: 1.4rem;
+  width: 80%;
+  margin: auto;
+  margin-bottom: 32px;
+}
+
+.card_sect {
+  width: 80%;
+  margin: 0 auto 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  width: 100%;
+  background-color: white;
+  margin: 16px 32px;
+  border-radius: 8px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+}
+
+.card img {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.card h2 {
+  margin-bottom: 8px;
+}
+
+.card p {
+  margin-bottom: 8px;
+}
+
+.card a {
+  width: 90%;
+  padding: 12px;
+  background-color: var(--pink);
+  color: white;
+  font-weight: 700;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.card a:hover {
+  opacity: 0.8;
+}
+
+.card a:active {
+  background-color: var(--light-pink);
+}
+
+.cat_btn_sect {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid red;
+}
+
+.cat_btn, .btn_active {
+  padding: 12px;
+  background-color: var(--pink);
+  color: white;
+  font-weight: 700;
+  border: none;
+  margin-right: 1px;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.btn_active {
+  background-color: white;
+  color: var(--pink);
+}

@@ -2,80 +2,50 @@ import React, { createContext, useEffect, useState } from 'react';
 
 export const Context = createContext();
 
-export const url = process.env.REACT_APP_URL || 'http://localhost:3001';
+export const url = process.env.REACT_APP_API || 'https://wol-sports.web.app';
 
 const Provider = ({ children }) => {
   const [state, setState] = useState({
     loading: true,
-    genders: [],
     activities: [],
-    times: [],
     personalities: [],
     districts: [],
     goals: [],
+    genders: [],
+    isMobile: false,
   });
 
   useEffect(() => {
     getInfo();
+    setState((prevSt) => ({
+      ...prevSt,
+      isMobile: window.matchMedia('(max-width: 425px)').matches,
+    }))
   }, []);
 
   const getInfo = async () => {
-    const { genders } = await getGenders();
-    const { activities } = await getActivities();
-    const { districts } = await getDistricts();
-    const { personalities } = await getPersonalities();
-    const { goals } = await getGoals();
-    const { times } = await getTimes();
+    const { activities, districts, personalities, goals, genders } = await getApiInfo();
     setState((prevSt) => ({
       ...prevSt,
       loading: false,
-      genders,
       activities,
       districts,
       personalities,
       goals,
-      times,
+      genders
     }))
   }
 
-  const getGenders = async () => {
-    const response = await fetch(`${url}/gender`);
+  const getApiInfo = async () => {
+    const response = await fetch(`${url}/info`);
+    console.log(response)
     const data = response.json();
     return data;
   }
-  const getActivities = async () => {
-    const response = await fetch(`${url}/activity`);
-    const data = response.json();
-    return data;
-  }
-  const getDistricts = async () => {
-    const response = await fetch(`${url}/district`);
-    const data = response.json();
-    return data;
-  }
-  const getPersonalities = async () => {
-    const response = await fetch(`${url}/personality`);
-    const data = response.json();
-    return data;
-  }
-  const getGoals = async () => {
-    const response = await fetch(`${url}/goal`);
-    const data = response.json();
-    return data;
-  }
-  const getTimes = async () => {
-    const response = await fetch(`${url}/time`);
-    const data = response.json();
-    return data;
-  }
+
   const value = {
     ...state,
-    getActivities,
-    getDistricts,
-    getGenders,
-    getGoals,
-    getPersonalities,
-    getTimes,
+    getApiInfo,
   }
   return (
     <Context.Provider value={ value }>

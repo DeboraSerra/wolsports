@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Context } from '../provider/Provider';
-
-export const url = process.env.REACT_APP_URL || 'http://localhost:3001';
+import { Context, url } from '../provider/Provider';
 
 const UserForm = () => {
   const [state, setState] = useState({
