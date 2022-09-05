@@ -49,6 +49,14 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
       type: DataTypes.STRING,
     },
+    hasMaterial: {
+      allowNull: false,
+      type: DataTypes.BOOLEAN,
+    },
+    whichMaterial: {
+      allowNull: true,
+      type: DataTypes.STRING,
+    },
     createdAt: {
       type: DataTypes.DATE,
       allowNull: false,
