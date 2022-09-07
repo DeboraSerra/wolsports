@@ -10,12 +10,14 @@ module.exports = {
     return queryInterface.sequelize.transaction(t => {
       return Promise.all([
         queryInterface.addColumn('users', 'hasMaterial', {
+          field: 'has_material',
           type: Sequelize.BOOLEAN,
           allowNull: false,
           defaultValue: false,
         }, { transaction: t }),
         queryInterface.addColumn('users', 'whichMaterial', {
           type: Sequelize.STRING,
+          field: 'which_material',
         }, { transaction: t })
       ])
     })
