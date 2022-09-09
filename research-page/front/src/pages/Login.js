@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Background from '../components/Background';
 import style from '../styles/Login.module.css';
-
-export const url = 'http://localhost:3001';
+import { url } from '../provider/Provider';
 
 const Login = () => {
   const [state, setState] = useState({

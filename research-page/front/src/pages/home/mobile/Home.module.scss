@@ -1,0 +1,19 @@
+.logo {
+  font-size: 48px;
+  font-weight: 400;
+  background: -webkit-linear-gradient(45deg, var(--yellow), var(--pink));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.banner {
+  background-image: url(../../../images/Imagem-Background.png);
+  background-size: cover;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 471px;
+  text-align: justify;
+}

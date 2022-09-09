@@ -6,8 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import FilterButtons from '../components/FilterButtons';
 import Background from '../components/Background';
 import style from '../styles/Charts.module.css';
-
-export const url = 'http://localhost:3001/metrics';
+import { url } from '../provider/Provider';
 
 Chart.register( CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -36,7 +35,7 @@ const Metrics = () => {
         Authorization: localStorage.getItem('token'),
       }
     }
-    const response = await fetch(`${url}/${cat}`, obj);
+    const response = await fetch(`${url}/metrics/${cat}`, obj);
     const { data } = await response.json();
     setState((prevSt) => ({
       ...prevSt,
