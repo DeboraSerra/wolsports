@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import './App.css';
+import './App.scss';
 import { Routes, Route } from 'react-router-dom';
 import UserForm from './pages/UserForm';
 import WorkerForm from './pages/WorkerForm';

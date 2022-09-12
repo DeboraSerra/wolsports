@@ -1,12 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
-import Login from './Login';
+import Login from '../../Login';
 import style from './Home.module.scss';
-import { Context } from '../provider/Provider';
-import user from '../images/basquete_sol.png';
-import worker from '../images/worker.png';
-import group from '../images/group.png';
+import { Context } from '../../../provider/Provider';
 
 Modal.setAppElement('#root');
 
@@ -58,14 +55,8 @@ const Home = () => {
       </Modal>
       <section className={ style.banner }>
         <h1 className={ style.logo }>WOL SPORTS</h1>
-        <h1>
-          <select name="district">
-            <option>Brasília</option>
-            {districts.map(({ id, name }) => (
-              <option key={ id } value={ id }>{name}</option>
-            ))}
-          </select>
-          é seu clube esportivo!
+        <h1 className={ style.entry_text }>
+          Brasília é seu clube esportivo!
         </h1>
         <p>Encontre pessoas, locais e equipamentos e participe de centenas de atividades ao ar livre</p>
       </section>
