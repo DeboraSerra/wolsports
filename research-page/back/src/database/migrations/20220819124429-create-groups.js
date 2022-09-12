@@ -50,16 +50,8 @@ module.exports = {
         onUpdate: 'CASCADE',
       },
       time: {
-        field: 'time_id',
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false,
-        field: 'time_id',
-        references: {
-          model: 'times',
-          key: 'id',
-        },
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE',
       },
       forFun: {
         field: 'for_fun',

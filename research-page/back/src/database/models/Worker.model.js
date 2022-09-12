@@ -31,10 +31,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     time: {
-      field: 'time_id',
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
-      foreignKey: true,
     },
     needCref: {
       field: 'need_cref',

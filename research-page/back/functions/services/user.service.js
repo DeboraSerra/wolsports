@@ -13,13 +13,13 @@ const UserService = {
   },
   create: async (info) => {
     const { email, fullName, birthday, gender, district, address, activity,
-      practice, which, goal, personality, indications } = info;
+      practice, which, goal, personality, indications, hasMaterial, whichMaterial } = info;
     if (!info || !email || !fullName || !birthday || !gender || !district || !address
       || activity.length === 0 || goal.length === 0 || personality.length === 0) {
       throw new CodeError('Informações faltando', 401);
     }
     const result = await seq.transaction(async (t) => {
-      const { dataValues: user} = await db.User.create({ email, fullName, birthday, gender, district, address, practice, which, indications }, { transaction: t, raw: true });
+      const { dataValues: user} = await db.User.create({ email, fullName, birthday, gender, district, address, practice, which, indications, hasMaterial, whichMaterial }, { transaction: t, raw: true });
       const acts = activity.map((id) => ({ activity_id: id,
         user_id: user.id }));
       const activities = await db.UserActivity.bulkCreate(acts, { transaction: t });

@@ -49,6 +49,14 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
       type: DataTypes.STRING,
     },
+    hasMaterial: {
+      allowNull: false,
+      type: DataTypes.BOOLEAN,
+    },
+    whichMaterial: {
+      allowNull: true,
+      type: DataTypes.STRING,
+    },
     createdAt: {
       type: DataTypes.DATE,
       allowNull: false,
@@ -68,6 +76,9 @@ module.exports = (sequelize, DataTypes) => {
     User.belongsTo(models.District, {
       foreignKey: 'district_id',
       as: 'districtId',
+    });
+    User.belongsTo(models.Gender, {
+      foreignKey: 'gender',
     })
   }
   return User;

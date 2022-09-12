@@ -51,13 +51,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     hasMaterial: {
       allowNull: false,
-      field: 'has_material',
       type: DataTypes.BOOLEAN,
     },
     whichMaterial: {
       allowNull: true,
       type: DataTypes.STRING,
-      field: 'which_material',
     },
     createdAt: {
       type: DataTypes.DATE,

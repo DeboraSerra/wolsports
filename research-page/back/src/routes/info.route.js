@@ -1,9 +1,9 @@
+const InfoController = require('../controllers/info.controller');
 const { Router } = require('express');
-const GoalController = require('../controllers/goal.controller');
 
 const router = Router();
 
 router.route('/')
-  .get(GoalController.getAll);
+  .get(InfoController.getAll);
 
 module.exports = router;

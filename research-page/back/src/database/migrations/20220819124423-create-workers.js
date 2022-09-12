@@ -50,22 +50,14 @@ module.exports = {
         allowNull: false,
       },
       time: {
-        field: 'time_id',
-        type: Sequelize.INTEGER,
-        field: 'time_id',
+        type: Sequelize.STRING,
         allowNull: false,
-        references: {
-          model: 'times',
-          key: 'id',
-        },
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE',
       },
       needCref: {
         field: 'need_cref',
         type: Sequelize.BOOLEAN,
         allowNull: false,
-        defaultValue: 0,
+        defaultValue: false,
       },
       howItWorks: {
         field: 'how_it_works',

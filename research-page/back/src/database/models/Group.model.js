@@ -31,10 +31,8 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: true,
     },
     time: {
-      field: 'time_id',
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
-      foreignKey: true,
     },
     forFun: {
       field: 'for_fun',
