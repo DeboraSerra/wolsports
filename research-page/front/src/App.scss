@@ -1,6 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Changa+One&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap'); 
+@import url('https://fonts.googleapis.com/css2?family=Changa+One&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
 $yellow: #ffcb09;
 $pink: #d90c8d;
+$purple: #5c2e91;
 
 :root {
   --yellow: #ffcb09;
@@ -20,6 +22,10 @@ p {
   padding: 0;
 }
 
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
 button, .button {
   padding: 16px 45px;
   border: none;
@@ -27,7 +33,7 @@ button, .button {
   border-radius: 10px;
   font-family: 'Open Sans', sans-serif;
   font-weight: 600;
-  background-color: var(--pink);
+  background-color: $pink;
   color: white;
 }
 
@@ -36,5 +42,5 @@ button:hover {
 }
 
 button:active {
-  box-shadow: 2px 2px 5px #443069;
+  box-shadow: 2px 2px 5px $purple;
 }

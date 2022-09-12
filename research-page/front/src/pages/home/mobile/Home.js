@@ -2,10 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
 import style from './Home.module.scss';
-import { Context } from '../provider/Provider';
-import user from '../images/basquete_sol.png';
-import worker from '../images/worker.png';
-import group from '../images/group.png';
+import { Context } from '../../../provider/Provider';
 
 Modal.setAppElement('#root');
 
