@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Context, url } from '../../../provider/Provider';
+import style from './UserForm.module.scss';
 
 const UserForm = () => {
   const [state, setState] = useState({
@@ -15,13 +16,15 @@ const UserForm = () => {
     which: '',
     goal: [],
     personality: [],
+    hasMaterial: false,
+    whichMaterial: '',
     indications: '',
   });
   const [valid, setValid] = useState(false);
   const [error, setError] = useState('');
 
   const { genders, activities, goals, personalities, districts } = useContext(Context);
-  const { email, fullName, birthday, gender, district, address, activity, practice,
+  const { email, fullName, birthday, gender, district, address, activity, practice, hasMaterial, whichMaterial,
     which, goal, personality, indications } = state;
 
   const navigate = useNavigate();
@@ -50,7 +53,7 @@ const UserForm = () => {
       name = 'goal';
     }
     if (name === 'gender' || name === 'district') value = +value;
-    if (name === 'practice') value = checked;
+    if (name === 'practice' || name === 'hasMaterial') value = checked;
     setState((prevSt) => ({
       ...prevSt,
       [name]: value,
@@ -64,12 +67,14 @@ const UserForm = () => {
     const validAddress = !!address;
     const validActivity = activity.length > 0;
     const validWhich = (practice && !!which) || !practice;
+    const validMaterial = (hasMaterial && !!whichMaterial) || !hasMaterial;
     const validGoal = goal.length > 0;
     const validPersonality = personality.length > 0;
     const isValid = validEmail && validName && validBirthday && validAddress
-    && validActivity && validWhich && validGoal && validPersonality
+      && validActivity && validWhich && validGoal && validPersonality
+      && validMaterial;
     setValid(isValid);
-  }, [fullName, email, birthday, address, activity, which, practice, goal, ,personality])
+  }, [fullName, email, birthday, address, activity, which, practice, goal, personality, hasMaterial, whichMaterial])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -81,6 +86,7 @@ const UserForm = () => {
       },
       body: JSON.stringify(state),
     };
+    console.log({ state })
     const data = await fetch(`${url}/user`, obj);
     const error = await data.json();
     if (Object.keys(error).length !== 0) {
@@ -90,8 +96,8 @@ const UserForm = () => {
     navigate('/')
   }
   return (
-    <form onSubmit={ handleSubmit }>
-      {error && <p>{error}</p>}
+    <form className={ style.form } onSubmit={ handleSubmit }>
+      {error && <p className={ style.error }>{error}</p>}
       <input
         type="text"
         name="fullName"
@@ -116,8 +122,8 @@ const UserForm = () => {
         placeholder="Data de aniversário"
         aria-label="Data de aniversário"
       />
+      <legend>Como você se identifica? (Gênero)</legend>
       <section>
-        <legend>Como você se identifica? (Gênero)</legend>
         {genders.map(({ id, name }) => (
           <label htmlFor={ name } key={ id }>
             <input
@@ -150,9 +156,11 @@ const UserForm = () => {
         placeholder="Qual a quadra?"
         aria-label="Qual a quadra?"
       />
-      <section>
+      <div>
         <legend>Quais atividades físicas são do seu interesse?</legend>
         <p>Pode ser aquela atividade que você sempre gostou, mas nunca mais fez, ou aquela que você já fez a muito tempo e nunca mais praticou e nem sabe onde tem!</p>
+      </div>
+      <section>
         {activities.map(({ id, name }) => (
           <label htmlFor={ name } key={ id }>
             <input
@@ -181,11 +189,30 @@ const UserForm = () => {
         name="which"
         onChange={ handleChange }
         value={ which }
+        disabled={ !practice }
         placeholder="Quais?"
         aria-label="Quais?"
       />
+      <label>
+        Você tem algum material guardado que poderia emprestar ou alugar?
+        <input
+          type="checkbox"
+          name="hasMaterial"
+          onChange={ handleChange }
+          checked={ hasMaterial }
+        />
+      </label>
+      <input
+        type="text"
+        name="whichMaterial"
+        onChange={ handleChange }
+        value={ whichMaterial }
+        disabled={ !hasMaterial }
+        placeholder="Quais?"
+        aria-label="Quais?"
+      />
+      <legend>Hoje, qual seu objetivo quando você procura fazer uma atividade física?</legend>
       <section>
-        <legend>Hoje, qual seu objetivo quando você procura fazer uma atividade física?</legend>
         {goals.map(({ id, name }) => (
           <label htmlFor={ name } key={ id }>
             <input
@@ -200,8 +227,8 @@ const UserForm = () => {
           </label>
         ))}
       </section>
+      <legend>Quando você vai fazer exercício, você se considera uma pessoa:</legend>
       <section>
-        <legend>Quando você vai fazer exercício, você se considera uma pessoa:</legend>
         {personalities.map(({ id, name }) => (
           <label htmlFor={name} key={ id }>
             <input
@@ -216,14 +243,15 @@ const UserForm = () => {
           </label>
         ))}
       </section>
-      <section>
-        <legend>Conhece algum grupo para nos indicar?</legend>
+      <label htmlFor="indications">
+        Conhece algum grupo para nos indicar?
         <textarea
           name="indications"
           onChange={ handleChange }
+          id="indications"
           value={ indications }
         />
-      </section>
+      </label>
       <button
         type="submit"
         onSubmit={ handleSubmit }

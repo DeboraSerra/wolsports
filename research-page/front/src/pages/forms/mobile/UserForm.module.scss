@@ -1,0 +1,60 @@
+@import '../../../App.scss';
+
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 48px 25px;
+  background-color: $yellow;
+
+  & p, & legend {
+    font-size: 20px;
+    text-align: center;
+    margin: 8px 0;
+  }
+
+  & input, & select {
+    padding: 12px;
+    font-size: 16px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 10px;
+    border-bottom: 1px solid $purple;
+    background-color: white;
+  }
+
+  & section {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+  }
+
+  & label {
+    font-size: 18px;
+    margin: 2px 4px;
+
+    & input {
+      margin: 0 12px;
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  & label:last-of-type {
+    display: flex;
+    flex-direction: column;
+
+    & textarea {
+      resize: none;
+      height: 70px;
+      margin: 24px 0;
+      padding: 12px;
+      font-size: 16px;
+    }
+  }
+
+  & button {
+    font-size: 24px;
+    font-weight: 700;
+    align-self: center;
+  }
+}

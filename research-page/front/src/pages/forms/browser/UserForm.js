@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Context, url } from '../../../provider/Provider';
+import style from './UserForm.module.scss';
 
 const UserForm = () => {
   const [state, setState] = useState({
@@ -90,7 +91,7 @@ const UserForm = () => {
     navigate('/')
   }
   return (
-    <form onSubmit={ handleSubmit }>
+    <form className={ style.form } onSubmit={ handleSubmit }>
       {error && <p>{error}</p>}
       <input
         type="text"

@@ -39,8 +39,7 @@ const Provider = ({ children }) => {
 
   const getApiInfo = async () => {
     const response = await fetch(`${url}/info`);
-    console.log(response)
-    const data = response.json();
+    const data = await response.json();
     return data;
   }
 
