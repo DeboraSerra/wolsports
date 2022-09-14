@@ -98,68 +98,64 @@ const UserForm = () => {
   return (
     <form className={ style.form } onSubmit={ handleSubmit }>
       {error && <p className={ style.error }>{error}</p>}
-      <section className={ style.sect }>
-        <input
-          type="text"
-          name="fullName"
-          value={ fullName }
-          onChange={ handleChange }
-          placeholder="Nome completo"
-          aria-label="Nome completo"
-        />
-        <input
-          type="email"
-          name="email"
-          onChange={ handleChange }
-          value={ email }
-          placeholder="E-mail"
-          aria-label="E-mail"
-        />
-        <input
-          type="date"
-          name="birthday"
-          onChange={ handleChange }
-          value={ birthday }
-          placeholder="Data de aniversário"
-          aria-label="Data de aniversário"
-        />
+      <input
+        type="text"
+        name="fullName"
+        value={ fullName }
+        onChange={ handleChange }
+        placeholder="Nome completo"
+        aria-label="Nome completo"
+      />
+      <input
+        type="email"
+        name="email"
+        onChange={ handleChange }
+        value={ email }
+        placeholder="E-mail"
+        aria-label="E-mail"
+      />
+      <input
+        type="date"
+        name="birthday"
+        onChange={ handleChange }
+        value={ birthday }
+        placeholder="Data de aniversário"
+        aria-label="Data de aniversário"
+      />
+      <legend>Como você se identifica? (Gênero)</legend>
+      <section className={ style.gender }>
+        {genders.map(({ id, name }) => (
+          <label htmlFor={ name } key={ id }>
+            <input
+              type="radio"
+              name="gender"
+              id={ name }
+              value={ id }
+              onChange={ handleChange }
+              selected={ gender === id }
+            />
+            {name}
+          </label>
+        ))}
       </section>
-      <section className={ style.sect }>
-        <section className={ style.gender }>
-          <legend>Como você se identifica? (Gênero)</legend>
-          {genders.map(({ id, name }) => (
-            <label htmlFor={ name } key={ id }>
-              <input
-                type="radio"
-                name="gender"
-                id={ name }
-                value={ id }
-                onChange={ handleChange }
-                selected={ gender === id }
-              />
-              {name}
-            </label>
-          ))}
-        </section>
-        <select
-          value={ district }
-          name="district"
-          aria-label="Região administrativa"
-          onChange={ handleChange }
-        >
-          {districts.map(({ id, name }) => (
-            <option value={ id } key={ id }>{ name }</option>
-          ))}
-        </select>
-        <input
-          type="text"
-          name="address"
-          value={ address }
-          onChange={ handleChange }
-          placeholder="Qual a quadra?"
-          aria-label="Qual a quadra?"
-        />
-      </section>
+      <select
+        value={ district }
+        name="district"
+        aria-label="Região administrativa"
+        onChange={ handleChange }
+      >
+        {districts.map(({ id, name }) => (
+          <option value={ id } key={ id }>{ name }</option>
+        ))}
+      </select>
+      <input
+        type="text"
+        name="address"
+        value={ address }
+        onChange={ handleChange }
+        placeholder="Qual a quadra?"
+        aria-label="Qual a quadra?"
+      />
       <div>
         <legend>Quais atividades físicas são do seu interesse?</legend>
         <p>Pode ser aquela atividade que você sempre gostou, mas nunca mais fez, ou aquela que você já fez a muito tempo e nunca mais praticou e nem sabe onde tem!</p>
@@ -182,13 +178,13 @@ const UserForm = () => {
       <section className={ style.practice }>
         <section>
           <label>
-            Você pratica alguma das atividades marcadas acima?
             <input
               type="checkbox"
               name="practice"
               onChange={ handleChange }
               checked={ practice }
             />
+            Você pratica alguma das atividades marcadas acima?
           </label>
           <input
             type="text"
@@ -202,13 +198,13 @@ const UserForm = () => {
         </section>
         <section>
           <label>
-            Você tem algum material guardado que poderia emprestar ou alugar?
             <input
               type="checkbox"
               name="hasMaterial"
               onChange={ handleChange }
               checked={ hasMaterial }
             />
+            Você tem algum material guardado que poderia emprestar ou alugar?
           </label>
           <input
             type="text"
@@ -253,7 +249,7 @@ const UserForm = () => {
           </label>
         ))}
       </section>
-      <label htmlFor="indications">
+      <label htmlFor="indications" className={ style.indications }>
         Conhece algum grupo para nos indicar?
         <textarea
           name="indications"

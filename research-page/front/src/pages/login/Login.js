@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Background from '../components/Background';
-import style from '../styles/Login.module.css';
-import { url } from '../provider/Provider';
+import Background from '../../components/Background';
+import style from './Login.module.scss';
+import { url } from '../../provider/Provider';
 
 const Login = () => {
   const [state, setState] = useState({

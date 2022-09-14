@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
-import Login from '../../Login';
+import Login from '../../login/Login';
 import style from './Home.module.scss';
 import { Context } from '../../../provider/Provider';
 
@@ -9,7 +9,6 @@ Modal.setAppElement('#root');
 
 const Home = () => {
   const [modal, setModal] = useState(false);
-  const { districts } = useContext(Context);
 
   const open = () => setModal(true);
 
@@ -46,7 +45,7 @@ const Home = () => {
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            backgroundColor: '#e2dfe1',
+            backgroundColor: '#ffcb09',
             borderRadius: '12px',
           }
         }}
@@ -54,7 +53,7 @@ const Home = () => {
         <Login />
       </Modal>
       <section className={ style.banner }>
-        <h1 className={ style.logo }>WOL SPORTS</h1>
+        <h1 className={ style.logo } onClick={ open }>WOL SPORTS</h1>
         <h1 className={ style.entry_text }>
           Brasília é seu clube esportivo!
         </h1>

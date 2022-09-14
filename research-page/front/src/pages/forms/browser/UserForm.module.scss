@@ -1,23 +1,20 @@
 @import '../../../App.scss';
 
 .form {
-  margin: auto;
-  padding: 80px 70px;
+  margin: 80px auto;
+  width: 50%;
+  padding: 40px 35px;
   background-color: $yellow;
 
-  & .sect {
+  & .gender {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
 
-    & input, & select {
-      flex-grow: 1;
-      margin: 8px;
-    }
-
-    & .gender {
+    & label {
+      font-size: 18px;
+      width: 32%;
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      margin: 2px 4px;
     }
   }
 
@@ -25,6 +22,29 @@
     display: flex;
     flex-wrap: wrap;
     margin: 16px 0;
+
+    & label {
+      font-size: 18px;
+      width: 32%;
+      display: flex;
+      align-items: center;
+      margin: 4px 4px;
+    }
+  }
+
+  & .practice {
+    display: flex;
+
+    & section {
+      width: 50%;
+    }
+    & label {
+      font-size: 18px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      margin: 4px 4px;
+    }
   }
 
   & p, & legend {
@@ -34,26 +54,15 @@
   }
 
   & input, & select {
+    width: 80%;
+    display: block;
+    margin: 12px auto;
     padding: 12px;
     font-size: 24px;
     border: none;
     border-radius: 10px;
-    border-bottom: 1px solid $purple;
+    border-bottom: 1px solid $pink;
     background-color: white;
-  }
-
-  & .practice {
-    display: flex;
-    justify-content: space-between;
-
-    & section {
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-      margin: 24px 0;
-    }
   }
 
   & label {
@@ -67,22 +76,41 @@
     }
   }
 
-  & label:last-of-type {
+  & .goals, & .personalities {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+
+    & label {
+      width: 45%;
+      display: flex;
+      margin: 8px 0;
+    }
+  }
+
+  & .indications {
     display: flex;
     flex-direction: column;
+    text-align: center;
 
     & textarea {
+      width: 80%;
+      margin: 12px auto;
+      height: 80px;
       resize: none;
-      height: 70px;
-      margin: 24px 0;
-      padding: 12px;
-      font-size: 16px;
+      border-radius: 10px;
+      border: none;
+      border-bottom: 1px solid $pink;
+      padding: 8px;
+      font-size: 24px;
     }
   }
 
   & button {
     font-size: 24px;
     font-weight: 700;
-    align-self: center;
+    margin: 12px 50% 0;
+    transform: translateX(-50%);
   }
 }
