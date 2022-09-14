@@ -113,13 +113,13 @@ const UserForm = () => {
         placeholder="E-mail"
         aria-label="E-mail"
       />
+      <legend>Data de aniversário</legend>
       <input
         type="date"
+        id="birthday"
         name="birthday"
         onChange={ handleChange }
         value={ birthday }
-        placeholder="Data de aniversário"
-        aria-label="Data de aniversário"
       />
       <legend>Como você se identifica? (Gênero)</legend>
       <section>
@@ -174,14 +174,15 @@ const UserForm = () => {
           </label>
         ))}
       </section>
-      <label>
-        Você pratica alguma das atividades marcadas acima?
+      <label className={ style.practice } htmlFor="practice">
         <input
           type="checkbox"
+          id="practice"
           name="practice"
           onChange={ handleChange }
           checked={ practice }
         />
+        Você pratica alguma das atividades marcadas acima?
       </label>
       <input
         type="text"
@@ -192,14 +193,15 @@ const UserForm = () => {
         placeholder="Quais?"
         aria-label="Quais?"
       />
-      <label>
-        Você tem algum material guardado que poderia emprestar ou alugar?
+      <label className={ style.practice } htmlFor="has">
         <input
+          id="has"
           type="checkbox"
           name="hasMaterial"
           onChange={ handleChange }
           checked={ hasMaterial }
         />
+        Você tem algum material guardado que poderia emprestar ou alugar?
       </label>
       <input
         type="text"

@@ -37,13 +37,20 @@
 
     & section {
       width: 50%;
-    }
-    & label {
-      font-size: 18px;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      margin: 4px 4px;
+
+      & label {
+        font-size: 18px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        margin: 4px 4px;
+
+        & input {
+          margin: 0 8px;
+          width: 16px;
+          height: 16px;
+        }
+      }
     }
   }
 
@@ -65,11 +72,16 @@
     background-color: white;
   }
 
+  .birth {
+    text-align: center;
+    border: 1px solid red;
+  }
+
   & label {
     font-size: 18px;
     margin: 2px 4px;
 
-    & input {
+    & input[type=radio], & input[type=checkbox] {
       margin: 0 12px;
       width: 16px;
       height: 16px;

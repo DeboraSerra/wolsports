@@ -32,11 +32,16 @@
     font-size: 18px;
     margin: 2px 4px;
 
-    & input {
+    & input[type=radio], & input[type=checkbox] {
       margin: 0 12px;
       width: 16px;
       height: 16px;
     }
+  }
+
+  & .practice {
+    display: flex;
+    align-items: center;
   }
 
   & .indications {

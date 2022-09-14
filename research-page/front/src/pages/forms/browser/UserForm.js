@@ -114,13 +114,13 @@ const UserForm = () => {
         placeholder="E-mail"
         aria-label="E-mail"
       />
+      <legend>Data de aniversário</legend>
       <input
         type="date"
+        id="birthday"
         name="birthday"
         onChange={ handleChange }
         value={ birthday }
-        placeholder="Data de aniversário"
-        aria-label="Data de aniversário"
       />
       <legend>Como você se identifica? (Gênero)</legend>
       <section className={ style.gender }>
