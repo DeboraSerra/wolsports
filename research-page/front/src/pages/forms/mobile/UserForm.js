@@ -86,7 +86,6 @@ const UserForm = () => {
       },
       body: JSON.stringify(state),
     };
-    console.log({ state })
     const data = await fetch(`${url}/user`, obj);
     const error = await data.json();
     if (Object.keys(error).length !== 0) {
@@ -243,7 +242,7 @@ const UserForm = () => {
           </label>
         ))}
       </section>
-      <label htmlFor="indications">
+      <label htmlFor="indications" className={ style.indications }>
         Conhece algum grupo para nos indicar?
         <textarea
           name="indications"
