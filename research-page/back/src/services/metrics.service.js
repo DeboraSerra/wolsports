@@ -10,7 +10,7 @@ const activityQuant = async () => {
   const query = `
     SELECT
       a.name AS value,
-      COUNT(ua.activity_id) AS 'qnt'
+      COUNT(ua.activity_id) AS qnt
     FROM activities AS a
     LEFT JOIN user_activity AS ua
     ON ua.activity_id = a.id
@@ -25,7 +25,7 @@ const activityQuantByGender = async (gender) => {
   const query = `
     SELECT
       a.name AS value,
-      COUNT(ua.activity_id) AS 'qnt'
+      COUNT(ua.activity_id) AS qnt
     FROM activities AS a
     LEFT JOIN user_activity AS ua
     ON ua.activity_id = a.id
@@ -43,7 +43,7 @@ const goalQuant = async () => {
   const query = `
     SELECT
       g.name AS value,
-      COUNT(ug.goal_id) AS 'qnt'
+      COUNT(ug.goal_id) AS qnt
     FROM goals AS g
     LEFT JOIN user_goal AS ug
     ON ug.goal_id = g.id
@@ -58,7 +58,7 @@ const goalQuantByGender = async (gender) => {
   const query = `
     SELECT
       g.name AS value,
-      COUNT(ug.goal_id) AS 'qnt'
+      COUNT(ug.goal_id) AS qnt
     FROM goals AS g
     LEFT JOIN user_goal AS ug
     ON ug.goal_id = g.id
