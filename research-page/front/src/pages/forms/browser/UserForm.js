@@ -8,7 +8,7 @@ const UserForm = () => {
     email: '',
     fullName: '',
     birthday: '',
-    gender: 1,
+    gender: 0,
     district: 1,
     address: '',
     activity: [],
@@ -64,6 +64,7 @@ const UserForm = () => {
     const validEmail = !!email && /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/g.test(email);
     const validName = !!fullName;
     const validBirthday = !!birthday;
+    const validGender = !!gender;
     const validAddress = !!address;
     const validActivity = activity.length > 0;
     const validWhich = (practice && !!which) || !practice;
@@ -72,9 +73,9 @@ const UserForm = () => {
     const validPersonality = personality.length > 0;
     const isValid = validEmail && validName && validBirthday && validAddress
       && validActivity && validWhich && validGoal && validPersonality
-      && validMaterial;
+      && validMaterial && validGender;
     setValid(isValid);
-  }, [fullName, email, birthday, address, activity, which, practice, goal, personality, hasMaterial, whichMaterial])
+  }, [fullName, email, birthday, gender, address, activity, which, practice, goal, personality, hasMaterial, whichMaterial])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -114,7 +115,7 @@ const UserForm = () => {
         placeholder="E-mail"
         aria-label="E-mail"
       />
-      <legend>Data de aniversário</legend>
+      <legend>Data de nascimento</legend>
       <input
         type="date"
         id="birthday"
@@ -124,19 +125,12 @@ const UserForm = () => {
       />
       <legend>Como você se identifica? (Gênero)</legend>
       <section className={ style.gender }>
-        {genders.map(({ id, name }) => (
-          <label htmlFor={ name } key={ id }>
-            <input
-              type="radio"
-              name="gender"
-              id={ name }
-              value={ id }
-              onChange={ handleChange }
-              selected={ gender === id }
-            />
-            {name}
-          </label>
-        ))}
+        <select name="gender" defaultValue="0" value={gender}>
+          <option value="0">Selecione o que melhor se encaixa</option>
+          {genders.map(({ id, name }) => (
+            <option key={id} value={id}>{name}</option>
+          ))}
+        </select>
       </section>
       <select
         value={ district }
@@ -250,7 +244,7 @@ const UserForm = () => {
         ))}
       </section>
       <label htmlFor="indications" className={ style.indications }>
-        Conhece algum grupo para nos indicar?
+        Você conhece algum grupo ou um local que tem atividade física (esporte, funcional, yoga, taichi, qualquer atividade ao ar livre) - Conta para gente onde fica e se tem algum responsável!
         <textarea
           name="indications"
           onChange={ handleChange }
