@@ -92,7 +92,8 @@ const UserForm = () => {
     const data = await fetch(`${url}/user`, obj);
     const error = await data.json();
     if (Object.keys(error).length !== 0) {
-      setError(error.message)
+      setLoading();
+      setError(error.message);
       return;
     }
     setLoading();

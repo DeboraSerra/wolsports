@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Loading from '../../../components/Loading';
 import { Context, url } from '../../../provider/Provider';
 import style from './UserForm.module.scss';
 
@@ -23,7 +24,7 @@ const UserForm = () => {
   const [valid, setValid] = useState(false);
   const [error, setError] = useState('');
 
-  const { genders, activities, goals, personalities, districts, successMessage } = useContext(Context);
+  const { genders, activities, goals, personalities, districts, successMessage, loading, setLoading } = useContext(Context);
   const { email, fullName, birthday, gender, district, address, activity, practice, hasMaterial, whichMaterial,
     which, goal, personality, indications } = state;
 
@@ -79,6 +80,7 @@ const UserForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading();
     const obj = {
       method: 'POST',
       headers: {
@@ -91,8 +93,10 @@ const UserForm = () => {
     const error = await data.json();
     if (Object.keys(error).length !== 0) {
       setError(error.message)
+      setLoading();
       return;
     }
+    setLoading()
     successMessage();
     navigate('/')
   }
@@ -258,7 +262,7 @@ const UserForm = () => {
         onSubmit={ handleSubmit }
         disabled={ !valid }
       >
-        Enviar
+        {loading ? <Loading /> : 'Enviar'}
       </button>
     </form>
   )
