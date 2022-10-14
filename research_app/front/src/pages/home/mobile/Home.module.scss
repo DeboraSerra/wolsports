@@ -11,6 +11,81 @@
   width: fit-content;
 }
 
+.close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 1.2rem;
+  color: $purple;
+  cursor: pointer;
+}
+
+.p {
+  width: 80%;
+  font-size: 1.2rem;
+  margin: 40% auto;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+
+  & span {
+    display: inline-block;
+    margin-bottom: 16px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 15px;
+      background-color: $pink;
+      transform: rotate(40deg);
+      height: 15px;
+      border-radius: 15px;
+      right: -16px;
+      bottom: 84px;
+      z-index: -1;
+    }// &::before
+  
+    &::after {
+      content: '';
+      position: absolute;
+      width: 15px;
+      background-color: $purple;
+      transform: rotate(40deg);
+      height: 15px;
+      border-radius: 15px;
+      right: 40px;
+      top: -44px;
+      z-index: -1;
+    }// &::after
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100px;
+    background-color: $pink;
+    transform: rotate(40deg);
+    height: 15px;
+    border-radius: 15px;
+    right: -54px;
+    z-index: -1;
+  }// &::before
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    background-color: $purple;
+    transform: rotate(40deg);
+    height: 15px;
+    border-radius: 15px;
+    right: -8px;
+    z-index: -1;
+  }// &::after
+}
+
 .banner {
   background-image: url(../../../images/Imagem-Background.png);
   background-size: cover;
