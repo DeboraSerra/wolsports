@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Loading from '../../../components/Loading';
 import { Context, url } from '../../../provider/Provider';
 import style from './UserForm.module.scss';
 
@@ -8,7 +9,7 @@ const UserForm = () => {
     email: '',
     fullName: '',
     birthday: '',
-    gender: 0,
+    gender: 1,
     district: 1,
     address: '',
     activity: [],
@@ -23,7 +24,7 @@ const UserForm = () => {
   const [valid, setValid] = useState(false);
   const [error, setError] = useState('');
 
-  const { genders, activities, goals, personalities, districts } = useContext(Context);
+  const { genders, activities, goals, personalities, districts, successMessage, loading, setLoading } = useContext(Context);
   const { email, fullName, birthday, gender, district, address, activity, practice, hasMaterial, whichMaterial,
     which, goal, personality, indications } = state;
 
@@ -79,6 +80,7 @@ const UserForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading();
     const obj = {
       method: 'POST',
       headers: {
@@ -87,13 +89,14 @@ const UserForm = () => {
       },
       body: JSON.stringify(state),
     };
-    console.log({ state })
     const data = await fetch(`${url}/user`, obj);
     const error = await data.json();
     if (Object.keys(error).length !== 0) {
       setError(error.message)
       return;
     }
+    setLoading();
+    successMessage();
     navigate('/')
   }
   return (
@@ -106,6 +109,7 @@ const UserForm = () => {
         onChange={ handleChange }
         placeholder="Nome completo"
         aria-label="Nome completo"
+        required
       />
       <input
         type="email"
@@ -114,6 +118,7 @@ const UserForm = () => {
         value={ email }
         placeholder="E-mail"
         aria-label="E-mail"
+        required
       />
       <legend>Data de nascimento</legend>
       <input
@@ -122,11 +127,11 @@ const UserForm = () => {
         name="birthday"
         onChange={ handleChange }
         value={ birthday }
+        required
       />
       <legend>Como você se identifica? (Gênero)</legend>
       <section className={ style.gender }>
-        <select name="gender" defaultValue="0" value={gender}>
-          <option value="0">Selecione o que melhor se encaixa</option>
+        <select name="gender" value={gender} required onChange={ handleChange }>
           {genders.map(({ id, name }) => (
             <option key={id} value={id}>{name}</option>
           ))}
@@ -137,6 +142,7 @@ const UserForm = () => {
         name="district"
         aria-label="Região administrativa"
         onChange={ handleChange }
+        required
       >
         {districts.map(({ id, name }) => (
           <option value={ id } key={ id }>{ name }</option>
@@ -149,6 +155,7 @@ const UserForm = () => {
         onChange={ handleChange }
         placeholder="Qual a quadra?"
         aria-label="Qual a quadra?"
+        required
       />
       <div>
         <legend>Quais atividades físicas são do seu interesse?</legend>
@@ -244,7 +251,7 @@ const UserForm = () => {
         ))}
       </section>
       <label htmlFor="indications" className={ style.indications }>
-        Você conhece algum grupo ou um local que tem atividade física (esporte, funcional, yoga, taichi, qualquer atividade ao ar livre) - Conta para gente onde fica e se tem algum responsável!
+        Você conhece algum grupo ou um local que tem atividade física (esporte, funcional, yoga, taichi, qualquer atividade ao ar livre) - Conta para gente onde fica e se tem algum responsável pelo grupo!
         <textarea
           name="indications"
           onChange={ handleChange }
@@ -257,7 +264,7 @@ const UserForm = () => {
         onSubmit={ handleSubmit }
         disabled={ !valid }
       >
-        Enviar
+        {loading ? <Loading /> : 'Enviar'}
       </button>
     </form>
   )

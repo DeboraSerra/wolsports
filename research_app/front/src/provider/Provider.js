@@ -1,8 +1,20 @@
 import React, { createContext, useEffect, useState } from 'react';
 
-export const Context = createContext();
+export const Context = createContext({
+  loading: true,
+  activities: [],
+  personalities: [],
+  districts: [],
+  goals: [],
+  genders: [],
+  isMobile: false,
+  success: false,
+  successMessage: () => {},
+  getApiInfo: async () => {},
+  setLoading: () => {},
+});
 
-export const url = process.env.REACT_APP_API || 'http://localhost:3001';
+export const url = process.env.REACT_APP_API;
 
 const Provider = ({ children }) => {
   const [state, setState] = useState({
@@ -13,6 +25,7 @@ const Provider = ({ children }) => {
     goals: [],
     genders: [],
     isMobile: false,
+    success: false,
   });
 
   useEffect(() => {
@@ -42,9 +55,26 @@ const Provider = ({ children }) => {
     return data;
   }
 
+  const successMessage = async () => {
+    setState((prevSt) => ({
+      ...prevSt,
+      success: !state.success,
+      loading: false,
+    }))
+  }
+
+  const setLoading = () => {
+    setState((prevSt) => ({
+      ...prevSt,
+      loading: !state.loading,
+    }))
+  }
+
   const value = {
     ...state,
     getApiInfo,
+    successMessage,
+    setLoading,
   }
   return (
     <Context.Provider value={ value }>
