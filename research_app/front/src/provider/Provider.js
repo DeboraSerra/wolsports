@@ -34,7 +34,6 @@ const Provider = ({ children }) => {
     ReactPixel.init('1366199503912772');
     ReactPixel.grantConsent();
     ReactPixel.pageView();
-    ReactPixel.track('SubmitApplication', { type: 'usuario' })
     getInfo();
     setState((prevSt) => ({
       ...prevSt,
@@ -62,6 +61,7 @@ const Provider = ({ children }) => {
   }
 
   const successMessage = async () => {
+    ReactPixel.track('SubmitApplication', { type: 'usuario' })
     setState((prevSt) => ({
       ...prevSt,
       success: !state.success,
