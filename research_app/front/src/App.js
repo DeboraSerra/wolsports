@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import './App.scss';
 import { Routes, Route } from 'react-router-dom';
 import MForm from './pages/forms/mobile/UserForm';
@@ -7,9 +7,16 @@ import Metrics from './pages/Metrics';
 import BHome from './pages/home/browser/Home';
 import MHome from './pages/home/mobile/Home'
 import { Context } from './provider/Provider';
+import ReactPixel from 'react-facebook-pixel';
 
 function App() {
-  const { isMobile } = useContext(Context);
+  const { isMobile, view, setView } = useContext(Context);
+  useEffect(() => {
+    if (!view) {
+      ReactPixel.pageView();
+      setView();
+    }
+  }, [])
   return (
     <div className="App">
       <Routes>
