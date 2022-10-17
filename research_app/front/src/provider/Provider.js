@@ -14,6 +14,8 @@ export const Context = createContext({
   getApiInfo: async () => {},
   setLoading: () => {},
   consent: false,
+  view: false,
+  setView: () => {}
 });
 
 export const url = process.env.REACT_APP_API;
@@ -28,18 +30,25 @@ const Provider = ({ children }) => {
     genders: [],
     isMobile: false,
     success: false,
+    view: false,
   });
 
   useEffect(() => {
     ReactPixel.init('1366199503912772');
     ReactPixel.grantConsent();
-    ReactPixel.pageView();
     getInfo();
     setState((prevSt) => ({
       ...prevSt,
       isMobile: window.matchMedia('(max-width: 425px)').matches,
     }))
   }, []);
+
+  const setView = () => {
+    setState((prevSt) => ({
+      ...prevSt,
+      view: true,
+    }))
+  }
 
   const getInfo = async () => {
     const { activities, districts, personalities, goals, genders } = await getApiInfo();
@@ -81,6 +90,7 @@ const Provider = ({ children }) => {
     getApiInfo,
     successMessage,
     setLoading,
+    setView,
   }
   return (
     <Context.Provider value={ value }>
