@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
+import ReactPixel from 'react-facebook-pixel';
 
 export const Context = createContext({
   loading: true,
@@ -12,6 +13,7 @@ export const Context = createContext({
   successMessage: () => {},
   getApiInfo: async () => {},
   setLoading: () => {},
+  consent: false,
 });
 
 export const url = process.env.REACT_APP_API;
@@ -29,6 +31,9 @@ const Provider = ({ children }) => {
   });
 
   useEffect(() => {
+    ReactPixel.init('1366199503912772');
+    ReactPixel.grantConsent();
+    ReactPixel.pageView();
     getInfo();
     setState((prevSt) => ({
       ...prevSt,
@@ -56,6 +61,7 @@ const Provider = ({ children }) => {
   }
 
   const successMessage = async () => {
+    ReactPixel.track('submited', { type: 'usuario' })
     setState((prevSt) => ({
       ...prevSt,
       success: !state.success,
