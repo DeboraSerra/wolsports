@@ -36,10 +36,14 @@ const Provider = ({ children }) => {
   useEffect(() => {
     ReactPixel.init('1366199503912772');
     ReactPixel.grantConsent();
+    if (!state.view) {
+      ReactPixel.pageView();
+    }
     getInfo();
     setState((prevSt) => ({
       ...prevSt,
       isMobile: window.matchMedia('(max-width: 425px)').matches,
+      view: true,
     }))
   }, []);
 
